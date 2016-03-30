@@ -5,9 +5,9 @@ import time
 
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
-    time.sleep(body.count(b'.'))
+    time.sleep(10)
     print(" [x] Done")
-    ch.basic_ack(delivery_tag = method.delivery_tag)
+    ch.basic_ack(delivery_tag=method.delivery_tag)
 
 
 def main():
@@ -22,6 +22,7 @@ def main():
     channel.basic_consume(callback, queue='download_queue')
 
     channel.start_consuming()
+
 
 if __name__ == '__main__':
     main()
